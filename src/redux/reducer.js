@@ -4,6 +4,9 @@ const initialState = {
   contactAdding: false,
   contactDeleting: false,
   contactEditing: false,
+  authProcessing: false,
+  isAdmin: false,
+  error: false,
   contactSearchString: "",
 };
 
@@ -11,7 +14,7 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case "contacts/load/started":
       return {
-       ...state,
+        ...state,
         contactsLoading: true,
       };
 
@@ -31,10 +34,7 @@ export default function reducer(state = initialState, action) {
     case "contact/add/succeed":
       return {
         ...state,
-        contacts: [
-          ...state.contacts,
-          action.payload
-        ],
+        contacts: [...state.contacts, action.payload],
         contactsLoading: false,
       };
 
@@ -47,7 +47,9 @@ export default function reducer(state = initialState, action) {
     case "contact/delete/succeed":
       return {
         ...state,
-        contacts: state.contacts.filter((contact) => contact.id !== action.payload),
+        contacts: state.contacts.filter(
+          (contact) => contact.id !== action.payload
+        ),
         contactsDeleting: false,
       };
 
@@ -76,6 +78,25 @@ export default function reducer(state = initialState, action) {
         contactSearchString: action.payload,
       };
 
+    case "auth/process/started":
+      return {
+        ...state,
+        authProcessing: true,
+      };
+
+    case "auth/process/succeed":
+      return {
+        ...state,
+        isAdmin: true,
+        authProcessing: false,
+      };
+
+    case "auth/process/failed":
+      return {
+        ...state,
+        error: true,
+        authProcessing: false,
+      };
 
     default:
       return state;

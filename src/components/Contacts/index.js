@@ -5,21 +5,30 @@ import List from "@material-ui/core/List";
 import useStyles from "./styles";
 import Header from "../Header";
 import { contactsLoaded } from "../../redux/actions";
+import { Redirect } from "react-router-dom";
 
 function Contacts() {
   const dispatch = useDispatch();
+  const classes = useStyles();
+
   useEffect(() => {
     dispatch(contactsLoaded());
   }, [dispatch]);
 
-  const classes = useStyles();
+  const isAdmin = useSelector((state) => state.isAdmin);
 
   const contacts = useSelector((state) => {
-    const {contacts, contactSearchString} = state;
+    const { contacts, contactSearchString } = state;
     return contacts.filter(({ name }) => {
-      return name.toLowerCase().indexOf(contactSearchString.toLowerCase()) !== -1
-    })
+      return (
+        name.toLowerCase().indexOf(contactSearchString.toLowerCase()) !== -1
+      );
+    });
   });
+
+  if (!isAdmin) {
+    return <Redirect to="/auth"/>;
+  }
 
   return (
     <>

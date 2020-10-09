@@ -66,11 +66,12 @@ export function userAuthorised(login, password) {
   return (dispatch) => {
     dispatch({ type: "auth/process/started" });
 
-    post(`/users`, { login,password }).then((json) => {
-      dispatch({
-        type: "auth/process/succeed",
-        payload: json,
-      });
+    get(`/users/1`).then((json) => {
+      if (login === json.login || password === JSON.parse(json.password)) {
+        dispatch({ type: "auth/process/succeed" });
+      } else {
+        dispatch({ type: "auth/process/failed" });
+      }
     });
   };
 }
