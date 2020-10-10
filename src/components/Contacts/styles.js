@@ -4,8 +4,8 @@ const useStyles = makeStyles((theme) => ({
   contacts: {
     marginTop: theme.spacing(2),
     width: 900,
-    margin: "auto"
-  }
+    margin: "auto",
+  },
 }));
 
 export default useStyles;

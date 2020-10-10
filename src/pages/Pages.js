@@ -1,18 +1,21 @@
-import React from 'react';
-import { Switch, Route } from "react-router-dom";
-import AuthPage from "./AuthPage";
-import ContactsPage from "./ContactsPage";
+import React from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import Auth from "../components/Auth";
+import Contacts from "../components/Contacts";
+import { useSelector } from "react-redux";
 
 function Pages() {
+  const isAdmin = useSelector((state) => state.application.isAdmin);
+
   return (
-    <Switch>
-      <Route path="/auth">
-        <AuthPage />
+    <>
+      <Route path="/">
+        {!isAdmin ? <Auth /> : <Redirect to="/contacts" />}
       </Route>
       <Route path="/contacts">
-        <ContactsPage />
+        {isAdmin ? <Contacts /> : <Redirect to="/" />}
       </Route>
-    </Switch>
+    </>
   );
 }
 

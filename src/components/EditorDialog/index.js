@@ -4,26 +4,40 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import DialogContent from "@material-ui/core/DialogContent";
 import useStyles from "./styles";
-import {useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { contactEdited } from "../../redux/actions";
+import Grid from "@material-ui/core/Grid";
 
-function EditorDialog({ contact, isOpened, handleClose}) {
+function EditorDialog({ contact, isOpened, handleClose }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const [name, setName] = useState(contact.name);
-  const handleChangeName = (e) => setName(e.target.value);
+  const [inputs, setInputs] = useState({
+    name: contact.name,
+    phone: contact.phone,
+    email: contact.email,
+  });
 
-  const [phone, setPhone] = useState(contact.phone);
-  const handleChangePhone = (e) => setPhone(e.target.value);
+  const handleChangeInputs = (e) =>
+    setInputs({
+      [e.target.name]: e.target.value,
+    });
 
-  const [mail, setMail] = useState(contact.email);
-  const handleChangeMail = (e) => setMail(e.target.value);
-
-  const emptyForms = name === "" || phone === "" || mail === "";
+  // const [name, setName] = useState(contact.name);
+  // const handleChangeName = (e) => setName(e.target.value);
+  //
+  // const [phone, setPhone] = useState(contact.phone);
+  // const handleChangePhone = (e) => setPhone(e.target.value);
+  //
+  // const [mail, setMail] = useState(contact.email);
+  // const handleChangeMail = (e) => setMail(e.target.value);
+  //
+  const emptyForms =
+    inputs.name === "" || inputs.phone === "" || inputs.email === "";
 
   const handleEditContact = () => {
-    dispatch(contactEdited(contact.id, name, phone, mail));
+    const { name, phone, email } = inputs;
+    dispatch(contactEdited(contact.id, name, phone, email));
     handleClose();
   };
 
@@ -34,36 +48,40 @@ function EditorDialog({ contact, isOpened, handleClose}) {
         open={isOpened}
         classes={{ paper: classes.contactForm }}
       >
-        <DialogContent>
-          <div>
+        <Grid container direction="column" spacing={2}>
+          <Grid item>
             <TextField
               label="Введите имя"
               variant="outlined"
-              value={name}
-              onChange={handleChangeName}
+              value={inputs.name}
+              onChange={handleChangeInputs}
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item>
             <TextField
               label="Введите номер"
               variant="outlined"
-              value={phone}
-              onChange={handleChangePhone}
+              value={inputs.phone}
+              onChange={handleChangeInputs}
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item>
             <TextField
               label="Введите email"
               variant="outlined"
-              value={mail}
-              onChange={handleChangeMail}
+              value={inputs.email}
+              onChange={handleChangeInputs}
             />
-          </div>
-        </DialogContent>
-        <Button onClick={handleEditContact} disabled={emptyForms}>
-          Редактировать
-        </Button>
-        <Button onClick={handleClose} color="secondary">Отмена</Button>
+          </Grid>
+          <Grid container direction="column" alignItems="center">
+            <Button onClick={handleEditContact} disabled={emptyForms}>
+              Редактировать
+            </Button>
+            <Button onClick={handleClose} color="secondary">
+              Отмена
+            </Button>
+          </Grid>
+        </Grid>
       </Dialog>
     </>
   );

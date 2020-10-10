@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
@@ -15,17 +15,11 @@ function Contact({ contact }) {
       <ListItemIcon>
         <Avatar />
       </ListItemIcon>
-      <ListItemText>
-        {contact.name}
-      </ListItemText>
-      <ListItemText className={classes.phone}>
-        {contact.phone}
-      </ListItemText>
-      <ListItemText className={classes.email}>
-        {contact.email}
-      </ListItemText>
+      <ListItemText>{contact.name}</ListItemText>
+      <ListItemText className={classes.phone}>{contact.phone}</ListItemText>
+      <ListItemText className={classes.email}>{contact.email}</ListItemText>
       <ListItemSecondaryAction>
-        <ContactMenu contact={contact}/>
+        <ContactMenu contact={contact} />
       </ListItemSecondaryAction>
     </ListItem>
   );

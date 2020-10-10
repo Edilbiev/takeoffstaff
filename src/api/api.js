@@ -3,7 +3,7 @@ export function fetchRequest(path, method, params) {
   return fetch(ip + path, {
     method,
     headers: {
-      "Accept": "application/json",
+      Accept: "application/json",
       "Content-Type": "application/json",
     },
 

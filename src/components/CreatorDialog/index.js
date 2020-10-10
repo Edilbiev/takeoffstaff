@@ -8,28 +8,40 @@ import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 import { contactAdded } from "../../redux/actions";
 import Fab from "@material-ui/core/Fab";
+import Grid from "@material-ui/core/Grid";
 
 function CreatorDialog() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
+  const [inputs, setInputs] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
 
+  const handleChangeInputs = (e) =>
+    setInputs({
+      [e.target.name]: e.target.value,
+    });
 
   const [creatorOpened, setCreatorOpened] = useState(false);
   const handleCreator = () => setCreatorOpened(!creatorOpened);
-
-  const [name, setName] = useState("");
-  const handleChangeName = (e) => setName(e.target.value);
-
-  const [phone, setPhone] = useState("");
-  const handleChangePhone = (e) => setPhone(e.target.value);
-
-  const [mail, setMail] = useState("");
-  const handleChangeMail = (e) => setMail(e.target.value);
-
-  const emptyForms = name === "" || phone === "" || mail === "";
+  //
+  // const [name, setName] = useState("");
+  // const handleChangeName = (e) => setName(e.target.value);
+  //
+  // const [phone, setPhone] = useState("");
+  // const handleChangePhone = (e) => setPhone(e.target.value);
+  //
+  // const [mail, setMail] = useState("");
+  // const handleChangeMail = (e) => setMail(e.target.value);
+  //
+  const emptyForms =
+    inputs.name === "" || inputs.phone === "" || inputs.email === "";
 
   const handleCreateContact = () => {
+    const { name, mail, phone } = inputs;
     dispatch(contactAdded(name, mail, phone));
     handleCreator();
   };
@@ -44,36 +56,41 @@ function CreatorDialog() {
         open={creatorOpened}
         classes={{ paper: classes.contactForm }}
       >
-        <DialogContent>
-          <div>
+        <Grid container direction="column" spacing={2}>
+          <Grid item>
             <TextField
               label="Введите имя"
               variant="outlined"
-              value={name}
-              onChange={handleChangeName}
+              value={inputs.name}
+              onChange={handleChangeInputs}
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item>
             <TextField
               label="Введите номер"
               variant="outlined"
-              value={phone}
-              onChange={handleChangePhone}
+              value={inputs.phone}
+              onChange={handleChangeInputs}
             />
-          </div>
-          <div>
+          </Grid>
+          <Grid item>
             <TextField
               label="Введите email"
               variant="outlined"
-              value={mail}
-              onChange={handleChangeMail}
+              value={inputs.email}
+              onChange={handleChangeInputs}
             />
-          </div>
-        </DialogContent>
-        <Button onClick={handleCreateContact} disabled={emptyForms}>
-          Добавить
-        </Button>
-        <Button onClick={handleCreator} color="secondary">Отмена</Button>
+          </Grid>
+          <Grid container direction="column" alignItems="center">
+            <Button onClick={handleCreateContact} disabled={emptyForms}>
+              Добавить
+            </Button>
+            <Button onClick={handleCreator} color="secondary">
+              Отмена
+            </Button>
+          </Grid>
+        </Grid>
+
       </Dialog>
     </>
   );

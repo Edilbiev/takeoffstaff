@@ -17,14 +17,19 @@
       "phone": "8 (800) 555-15-15",
       "email": "ocootes2@newyorker.com",
       "id": 3
+    },
+    {
+      "name": "Ivan Ivanov",
+      "phone": "sssss",
+      "email": "yusup_e@bk.ru",
+      "id": 4
     }
   ],
-
   "users": [
     {
       "id": 1,
       "login": "admin",
-      "password": 1234,
+      "password": "000000",
       "token": "qwertyuioasdfghjk23456789i"
     }
   ]

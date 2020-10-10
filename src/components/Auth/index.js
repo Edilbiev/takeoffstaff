@@ -1,17 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
 import { userAuthorised } from "../../redux/actions";
-import { Redirect } from "react-router-dom";
+import Snackbar from "@material-ui/core/Snackbar";
+import Alert from "@material-ui/lab/Alert";
 
 function Auth() {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const isAdmin = useSelector((state) => state.isAdmin);
-  const error = useSelector((state) => state.error);
+  const error = useSelector((state) => state.application.error);
+
+  const [alert, setAlert] = useState(false);
+
+  useEffect(() => {
+    setAlert(error);
+  }, [setAlert, error]);
+
+  const closeAlert = () => setAlert(false);
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -30,15 +38,11 @@ function Auth() {
 
   const handleKeyDown = (e) => {
     if (e.keyCode === 13) {
-      if (!emptyForms){
-        handleClick()
+      if (!emptyForms) {
+        handleClick();
       }
     }
   };
-
-  if (isAdmin) {
-    return <Redirect to="/contacts" />;
-  }
 
   return (
     <div className={classes.auth}>
@@ -58,6 +62,7 @@ function Auth() {
           onChange={handleChangePassword}
           variant="outlined"
           onKeyDown={handleKeyDown}
+          type="password"
         />
       </div>
       <div>
@@ -71,7 +76,16 @@ function Auth() {
           Войти
         </Button>
       </div>
-      <div>{error && "При входе произошла ошибка"}</div>
+      <Snackbar open={alert} autoHideDuration={6000} onClose={closeAlert}>
+        <Alert
+          severity="error"
+          elevation="5"
+          variant="filled"
+          onClose={closeAlert}
+        >
+          При входе произошла ошибка
+        </Alert>
+      </Snackbar>
     </div>
   );
 }

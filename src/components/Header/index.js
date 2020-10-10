@@ -12,7 +12,9 @@ import { contactSearchStringSet } from "../../redux/actions";
 function Header() {
   const dispatch = useDispatch();
 
-  const contactSearchString = useSelector((state) => state.contactSearchString);
+  const contactSearchString = useSelector(
+    (state) => state.application.contactSearchString
+  );
 
   const handleSearchStringChange = (e) =>
     dispatch(contactSearchStringSet(e.target.value));

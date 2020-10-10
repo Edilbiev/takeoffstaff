@@ -5,7 +5,6 @@ import List from "@material-ui/core/List";
 import useStyles from "./styles";
 import Header from "../Header";
 import { contactsLoaded } from "../../redux/actions";
-import { Redirect } from "react-router-dom";
 
 function Contacts() {
   const dispatch = useDispatch();
@@ -15,10 +14,11 @@ function Contacts() {
     dispatch(contactsLoaded());
   }, [dispatch]);
 
-  const isAdmin = useSelector((state) => state.isAdmin);
+  const isAdmin = useSelector((state) => state.application.isAdmin);
 
-  const contacts = useSelector((state) => {
-    const { contacts, contactSearchString } = state;
+  const filteredContacts = useSelector((state) => {
+    const { contactSearchString } = state.application;
+    const { contacts } = state.contacts;
     return contacts.filter(({ name }) => {
       return (
         name.toLowerCase().indexOf(contactSearchString.toLowerCase()) !== -1
@@ -26,16 +26,12 @@ function Contacts() {
     });
   });
 
-  if (!isAdmin) {
-    return <Redirect to="/auth"/>;
-  }
-
   return (
     <>
       <Header />
       <div className={classes.contacts}>
         <List>
-          {contacts.map((contact) => (
+          {filteredContacts.map((contact) => (
             <Contact contact={contact} key={contact.id} />
           ))}
         </List>
