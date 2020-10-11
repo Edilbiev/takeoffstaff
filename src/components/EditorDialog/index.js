@@ -51,6 +51,7 @@ function EditorDialog({ contact, isOpened, handleClose }) {
         <Grid container direction="column" spacing={2}>
           <Grid item>
             <TextField
+              name="name"
               label="Введите имя"
               variant="outlined"
               value={inputs.name}
@@ -59,6 +60,7 @@ function EditorDialog({ contact, isOpened, handleClose }) {
           </Grid>
           <Grid item>
             <TextField
+              name="phone"
               label="Введите номер"
               variant="outlined"
               value={inputs.phone}
@@ -67,6 +69,7 @@ function EditorDialog({ contact, isOpened, handleClose }) {
           </Grid>
           <Grid item>
             <TextField
+              name="email"
               label="Введите email"
               variant="outlined"
               value={inputs.email}

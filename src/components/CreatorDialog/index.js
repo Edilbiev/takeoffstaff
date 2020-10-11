@@ -59,7 +59,8 @@ function CreatorDialog() {
         <Grid container direction="column" spacing={2}>
           <Grid item>
             <TextField
-              label="Введите имя"
+              name="name"
+              placeholder="Введите имя"
               variant="outlined"
               value={inputs.name}
               onChange={handleChangeInputs}
@@ -67,7 +68,8 @@ function CreatorDialog() {
           </Grid>
           <Grid item>
             <TextField
-              label="Введите номер"
+              name="phone"
+              placeholder="Введите номер"
               variant="outlined"
               value={inputs.phone}
               onChange={handleChangeInputs}
@@ -75,7 +77,8 @@ function CreatorDialog() {
           </Grid>
           <Grid item>
             <TextField
-              label="Введите email"
+              name="email"
+              placeholder="Введите email"
               variant="outlined"
               value={inputs.email}
               onChange={handleChangeInputs}
