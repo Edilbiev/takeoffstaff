@@ -33,6 +33,12 @@ export default function application(state = initialState, action) {
         authProcessing: false,
       };
 
+    case "error/reset/succeed":
+      return {
+        ...state,
+        error: false,
+      }
+
     default:
       return state;
   }

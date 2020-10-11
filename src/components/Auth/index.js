@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
-import { userAuthorised } from "../../redux/actions";
+import {errorReset, userAuthorised} from "../../redux/actions";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 
@@ -13,13 +13,7 @@ function Auth() {
 
   const error = useSelector((state) => state.application.error);
 
-  const [alert, setAlert] = useState(false);
-
-  useEffect(() => {
-    setAlert(error);
-  }, [setAlert, error]);
-
-  const closeAlert = () => setAlert(false);
+  const closeAlert = () => dispatch(errorReset())
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -76,7 +70,7 @@ function Auth() {
           Войти
         </Button>
       </div>
-      <Snackbar open={alert} autoHideDuration={6000} onClose={closeAlert}>
+      <Snackbar open={error} autoHideDuration={6000} onClose={closeAlert}>
         <Alert
           severity="error"
           elevation="5"

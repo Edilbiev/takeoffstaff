@@ -72,3 +72,7 @@ export function userAuthorised(login, password) {
     });
   };
 }
+
+export function errorReset() {
+  return { type: "error/reset/succeed" }
+}
