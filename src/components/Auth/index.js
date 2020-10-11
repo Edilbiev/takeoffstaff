@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import useStyles from "./styles";
-import {errorReset, userAuthorised} from "../../redux/actions";
+import { errorReset, userAuthorised } from "../../redux/actions";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
 
@@ -13,7 +13,7 @@ function Auth() {
 
   const error = useSelector((state) => state.application.error);
 
-  const closeAlert = () => dispatch(errorReset())
+  const closeAlert = () => dispatch(errorReset());
 
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");

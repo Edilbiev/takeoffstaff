@@ -1,6 +1,14 @@
+//Фейковая проверка на авторизацию
+//В реальном проекте такого, само собой, не будет
+
+const isAdmin =
+  localStorage.getItem("token") === null
+    ? false
+    : JSON.parse(localStorage.getItem("token")) === "qwertyuioasdfghjk23456789i";
+
 const initialState = {
   authProcessing: false,
-  isAdmin: false,
+  isAdmin,
   error: false,
   contactSearchString: "",
 };
@@ -37,7 +45,7 @@ export default function application(state = initialState, action) {
       return {
         ...state,
         error: false,
-      }
+      };
 
     default:
       return state;

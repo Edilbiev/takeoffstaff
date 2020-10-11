@@ -20,18 +20,10 @@ function EditorDialog({ contact, isOpened, handleClose }) {
 
   const handleChangeInputs = (e) =>
     setInputs({
+      ...inputs,
       [e.target.name]: e.target.value,
     });
 
-  // const [name, setName] = useState(contact.name);
-  // const handleChangeName = (e) => setName(e.target.value);
-  //
-  // const [phone, setPhone] = useState(contact.phone);
-  // const handleChangePhone = (e) => setPhone(e.target.value);
-  //
-  // const [mail, setMail] = useState(contact.email);
-  // const handleChangeMail = (e) => setMail(e.target.value);
-  //
   const emptyForms =
     inputs.name === "" || inputs.phone === "" || inputs.email === "";
 

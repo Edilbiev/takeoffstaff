@@ -22,21 +22,13 @@ function CreatorDialog() {
 
   const handleChangeInputs = (e) =>
     setInputs({
+      ...inputs,
       [e.target.name]: e.target.value,
     });
 
   const [creatorOpened, setCreatorOpened] = useState(false);
   const handleCreator = () => setCreatorOpened(!creatorOpened);
-  //
-  // const [name, setName] = useState("");
-  // const handleChangeName = (e) => setName(e.target.value);
-  //
-  // const [phone, setPhone] = useState("");
-  // const handleChangePhone = (e) => setPhone(e.target.value);
-  //
-  // const [mail, setMail] = useState("");
-  // const handleChangeMail = (e) => setMail(e.target.value);
-  //
+
   const emptyForms =
     inputs.name === "" || inputs.phone === "" || inputs.email === "";
 

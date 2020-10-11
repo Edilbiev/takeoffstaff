@@ -7,6 +7,8 @@ import { useSelector } from "react-redux";
 function Pages() {
   const isAdmin = useSelector((state) => state.application.isAdmin);
 
+  console.log(isAdmin)
+
   return (
     <>
       <Route path="/">

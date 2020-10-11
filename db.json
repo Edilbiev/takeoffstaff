@@ -28,8 +28,8 @@
   "users": [
     {
       "id": 1,
-      "login": "a",
-      "password": "0",
+      "login": "admin",
+      "password": "0000",
       "token": "qwertyuioasdfghjk23456789i"
     }
   ]

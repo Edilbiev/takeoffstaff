@@ -65,6 +65,7 @@ export function userAuthorised(login, password) {
 
     get(`/users/1`).then((json) => {
       if (login === json.login && password === json.password) {
+        localStorage.setItem("token", JSON.stringify(json.token))
         dispatch({ type: "auth/process/succeed" });
       } else {
         dispatch({ type: "auth/process/failed" });
