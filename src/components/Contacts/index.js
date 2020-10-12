@@ -14,8 +14,6 @@ function Contacts() {
     dispatch(contactsLoaded());
   }, [dispatch]);
 
-  const isAdmin = useSelector((state) => state.application.isAdmin);
-
   const filteredContacts = useSelector((state) => {
     const { contactSearchString } = state.application;
     const { contacts } = state.contacts;

@@ -4,14 +4,13 @@ import TextField from "@material-ui/core/TextField";
 import { Button } from "@material-ui/core";
 import DialogContent from "@material-ui/core/DialogContent";
 import AddIcon from "@material-ui/icons/Add";
-import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 import { contactAdded } from "../../redux/actions";
-import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
+import DialogActions from "@material-ui/core/DialogActions";
+import IconButton from "@material-ui/core/IconButton";
 
 function CreatorDialog() {
-  const classes = useStyles();
   const dispatch = useDispatch();
 
   const [inputs, setInputs] = useState({
@@ -40,52 +39,57 @@ function CreatorDialog() {
 
   return (
     <>
-      <Fab onClick={handleCreator} className={classes.button} color="secondary">
-        <AddIcon />
-      </Fab>
-      <Dialog
-        onClose={handleCreator}
-        open={creatorOpened}
-        classes={{ paper: classes.contactForm }}
+      <Button
+        onClick={handleCreator}
+        variant="contained"
+        color="primary"
+        disableElevation
       >
-        <Grid container direction="column" spacing={2}>
-          <Grid item>
-            <TextField
-              name="name"
-              placeholder="Введите имя"
-              variant="outlined"
-              value={inputs.name}
-              onChange={handleChangeInputs}
-            />
+        <AddIcon className="add-button" />
+      </Button>
+      <Dialog onClose={handleCreator} open={creatorOpened} fullWidth>
+        <DialogContent>
+          <Grid container direction="column" spacing={2}>
+            <Grid item>
+              <TextField
+                name="name"
+                label="Введите имя"
+                variant="outlined"
+                value={inputs.name}
+                onChange={handleChangeInputs}
+                fullWidth
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                name="phone"
+                label="Введите номер"
+                variant="outlined"
+                value={inputs.phone}
+                onChange={handleChangeInputs}
+                fullWidth
+              />
+            </Grid>
+            <Grid item>
+              <TextField
+                name="email"
+                label="Введите email"
+                variant="outlined"
+                value={inputs.email}
+                onChange={handleChangeInputs}
+                fullWidth
+              />
+            </Grid>
           </Grid>
-          <Grid item>
-            <TextField
-              name="phone"
-              placeholder="Введите номер"
-              variant="outlined"
-              value={inputs.phone}
-              onChange={handleChangeInputs}
-            />
-          </Grid>
-          <Grid item>
-            <TextField
-              name="email"
-              placeholder="Введите email"
-              variant="outlined"
-              value={inputs.email}
-              onChange={handleChangeInputs}
-            />
-          </Grid>
-          <Grid container direction="column" alignItems="center">
-            <Button onClick={handleCreateContact} disabled={emptyForms}>
-              Добавить
-            </Button>
-            <Button onClick={handleCreator} color="secondary">
-              Отмена
-            </Button>
-          </Grid>
-        </Grid>
-
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCreator} color="secondary">
+            Отмена
+          </Button>
+          <Button onClick={handleCreateContact} disabled={emptyForms}>
+            Добавить
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   );

@@ -6,6 +6,7 @@ import useStyles from "./styles";
 import { errorReset, userAuthorised } from "../../redux/actions";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
+import {Grid} from "@material-ui/core";
 
 function Auth() {
   const classes = useStyles();
@@ -40,36 +41,40 @@ function Auth() {
 
   return (
     <div className={classes.auth}>
-      <div>
-        <TextField
-          label="Введите имя пользователя"
-          value={login}
-          onChange={handleChangeUsername}
-          variant="outlined"
-          onKeyDown={handleKeyDown}
-        />
-      </div>
-      <div>
-        <TextField
-          label="Введите пароль"
-          value={password}
-          onChange={handleChangePassword}
-          variant="outlined"
-          onKeyDown={handleKeyDown}
-          type="password"
-        />
-      </div>
-      <div>
-        <Button
-          className={classes.button}
-          color="primary"
-          variant="outlined"
-          disabled={emptyForms}
-          onClick={handleClick}
-        >
-          Войти
-        </Button>
-      </div>
+      <Grid container direction="column" spacing={2}>
+        <Grid item>
+          <TextField
+            label="Введите имя пользователя"
+            value={login}
+            onChange={handleChangeUsername}
+            variant="outlined"
+            onKeyDown={handleKeyDown}
+            fullWidth
+          />
+        </Grid>
+        <Grid item>
+          <TextField
+            label="Введите пароль"
+            value={password}
+            onChange={handleChangePassword}
+            variant="outlined"
+            onKeyDown={handleKeyDown}
+            type="password"
+            fullWidth
+          />
+        </Grid>
+        <Grid item>
+          <Button
+            color="primary"
+            variant="outlined"
+            disabled={emptyForms}
+            onClick={handleClick}
+            fullWidth
+          >
+            Войти
+          </Button>
+        </Grid>
+      </Grid>
       <Snackbar open={error} autoHideDuration={6000} onClose={closeAlert}>
         <Alert
           severity="error"

@@ -6,14 +6,14 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import { ThemeProvider } from "@material-ui/core/styles";
 import { store } from "./redux";
 import theme from "./theme";
-import Pages from "./pages/Pages";
+import App from "./components/App";
 
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Pages />
+        <App />
       </ThemeProvider>
     </Provider>
   </BrowserRouter>,

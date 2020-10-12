@@ -4,6 +4,14 @@ import application from "./application";
 import { logger } from "redux-logger/src";
 import thunk from "redux-thunk";
 
+let middlewares;
+
+if (process.env.NODE_ENV === "development") {
+  middlewares = applyMiddleware(logger, thunk);
+} else {
+  middlewares = applyMiddleware(thunk);
+}
+
 const reducer = combineReducers({ contacts, application });
 
-export const store = createStore(reducer, applyMiddleware(logger, thunk));
+export const store = createStore(reducer, middlewares);

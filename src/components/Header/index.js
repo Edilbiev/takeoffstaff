@@ -8,6 +8,7 @@ import useStyles from "./styles";
 import CreatorDialog from "../CreatorDialog";
 import { useDispatch, useSelector } from "react-redux";
 import { contactSearchStringSet } from "../../redux/actions";
+import Grid from "@material-ui/core/Grid";
 
 function Header() {
   const dispatch = useDispatch();
@@ -21,33 +22,36 @@ function Header() {
 
   const classes = useStyles();
   return (
-    <div>
       <AppBar position="static">
         <Toolbar className={classes.toolBar}>
-          <div>
-            <Typography variant="h4" noWrap>
-              Contacts
-            </Typography>
-            <CreatorDialog />
-          </div>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              value={contactSearchString}
-              onChange={handleSearchStringChange}
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          <Grid container wrap="nowrap" justify="space-around" alignItems="center">
+            <Grid item lg={7}>
+              <Typography variant="h4" noWrap>
+                Contacts
+              </Typography>
+            </Grid>
+            <Grid item lg={2}>
+              <CreatorDialog />
+            </Grid>
+            <Grid item lg={4}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  value={contactSearchString}
+                  onChange={handleSearchStringChange}
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                />
+              </div>
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
-    </div>
   );
 }
 

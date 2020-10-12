@@ -5,13 +5,6 @@ const useStyles = makeStyles((theme) => ({
   toolBar: {
     width: 900,
     margin: "auto",
-    display: "flex",
-    justifyContent: "space-between",
-  },
-
-  title: {
-    flexGrow: 1,
-    display: "none",
   },
 
   search: {
@@ -24,10 +17,6 @@ const useStyles = makeStyles((theme) => ({
 
     marginLeft: 0,
     width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto",
-    },
   },
 
   searchIcon: {
@@ -47,7 +36,6 @@ const useStyles = makeStyles((theme) => ({
   inputInput: {
     padding: theme.spacing(1, 1, 1, 0),
     paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
     width: "100%",
   },
 }));
