@@ -6,7 +6,7 @@ import useStyles from "./styles";
 import { errorReset, userAuthorised } from "../../redux/actions";
 import Snackbar from "@material-ui/core/Snackbar";
 import Alert from "@material-ui/lab/Alert";
-import {Grid} from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 
 function Auth() {
   const classes = useStyles();

@@ -4,7 +4,8 @@
 const isAdmin =
   localStorage.getItem("token") === null
     ? false
-    : JSON.parse(localStorage.getItem("token")) === "qwertyuioasdfghjk23456789i";
+    : JSON.parse(localStorage.getItem("token")) ===
+      "qwertyuioasdfghjk23456789i";
 
 const initialState = {
   authProcessing: false,

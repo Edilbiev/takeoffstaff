@@ -34,11 +34,7 @@ function EditorDialog({ contact, isOpened, handleClose }) {
 
   return (
     <>
-      <Dialog
-        onClose={handleClose}
-        open={isOpened}
-        fullWidth
-      >
+      <Dialog onClose={handleClose} open={isOpened} fullWidth>
         <DialogContent>
           <Grid container direction="column" spacing={2}>
             <Grid item>
@@ -73,14 +69,14 @@ function EditorDialog({ contact, isOpened, handleClose }) {
             </Grid>
           </Grid>
         </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose} color="secondary">
-              Отмена
-            </Button>
-            <Button onClick={handleEditContact} disabled={emptyForms}>
-              Редактировать
-            </Button>
-          </DialogActions>
+        <DialogActions>
+          <Button onClick={handleClose} color="secondary">
+            Отмена
+          </Button>
+          <Button onClick={handleEditContact} disabled={emptyForms}>
+            Редактировать
+          </Button>
+        </DialogActions>
       </Dialog>
     </>
   );

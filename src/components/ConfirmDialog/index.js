@@ -10,7 +10,9 @@ function ConfirmDialog({ isOpened, handleClose, handleDelete }) {
       <DialogTitle>Удалить?</DialogTitle>
       <DialogActions>
         <Button onClick={handleClose}>Отмена</Button>
-        <Button onClick={handleDelete} color="secondary">Удалить</Button>
+        <Button onClick={handleDelete} color="secondary">
+          Удалить
+        </Button>
       </DialogActions>
     </Dialog>
   );

@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 import { contactAdded } from "../../redux/actions";
 import Grid from "@material-ui/core/Grid";
 import DialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
 
 function CreatorDialog() {
   const dispatch = useDispatch();

@@ -22,36 +22,41 @@ function Header() {
 
   const classes = useStyles();
   return (
-      <AppBar position="static">
-        <Toolbar className={classes.toolBar}>
-          <Grid container wrap="nowrap" justify="space-around" alignItems="center">
-            <Grid item lg={7}>
-              <Typography variant="h4" noWrap>
-                Contacts
-              </Typography>
-            </Grid>
-            <Grid item lg={2}>
-              <CreatorDialog />
-            </Grid>
-            <Grid item lg={4}>
-              <div className={classes.search}>
-                <div className={classes.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  value={contactSearchString}
-                  onChange={handleSearchStringChange}
-                  placeholder="Search…"
-                  classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                  }}
-                />
-              </div>
-            </Grid>
+    <AppBar position="static">
+      <Toolbar className={classes.toolBar}>
+        <Grid
+          container
+          wrap="nowrap"
+          justify="space-around"
+          alignItems="center"
+        >
+          <Grid item lg={7}>
+            <Typography variant="h4" noWrap>
+              Contacts
+            </Typography>
           </Grid>
-        </Toolbar>
-      </AppBar>
+          <Grid item lg={2}>
+            <CreatorDialog />
+          </Grid>
+          <Grid item lg={4}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <SearchIcon />
+              </div>
+              <InputBase
+                value={contactSearchString}
+                onChange={handleSearchStringChange}
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+              />
+            </div>
+          </Grid>
+        </Grid>
+      </Toolbar>
+    </AppBar>
   );
 }
 
