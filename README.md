@@ -1,6 +1,7 @@
 Для запуска приложения:
 ### `git clone https://github.com/Edilbiev/takeoffstaff.git`
 ### `cd takeoffstaff`
+### `npm install`
 ### `npm run dev`
 
 <h2>Задание</h2>
